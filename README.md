@@ -1,8 +1,8 @@
 Go Cache helps you to made simple cache based on map with Set\Get\Delete functions.
 
-Example wdwd
+Example
 
-package main
+```package main
 
 import (
 	"fmt"
@@ -25,4 +25,4 @@ func main() {
 		fmt.Println(err)
 	}
 	fmt.Println(userId)
-}
+}```
