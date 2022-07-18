@@ -1,15 +1,17 @@
 Go Cache helps you to made simple cache based on map with Set\Get\Delete functions.
+
 Example
-```
+
+```go
 package main
 
 import (
-"fmt"
-"github.com/VadimGossip/simpleCache"
+	"fmt"
+    "github.com/VadimGossip/simpleCache"
 )
 
 func main() {
-cache := simpleCache.NewCache()
+	cache := simpleCache.NewCache()
 
 	cache.Set("userId", 42)
 	userId, err := cache.Get("userId")
