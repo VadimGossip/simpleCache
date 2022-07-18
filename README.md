@@ -2,7 +2,6 @@ Go Cache helps you to made simple cache based on map with Set\Get\Delete functio
 
 Example
 
-```go
 package main
 
 import (
@@ -10,7 +9,7 @@ import (
     "github.com/VadimGossip/simpleCache"
 )
 
-func main() {
+func main() { 
 	cache := simpleCache.NewCache()
 
 	cache.Set("userId", 42)
@@ -27,4 +26,3 @@ func main() {
 	}
 	fmt.Println(userId)
 }
-```
