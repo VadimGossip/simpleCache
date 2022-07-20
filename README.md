@@ -2,7 +2,8 @@ Go Cache helps you to made simple cache based on map with Set\Get\Delete functio
 
 Example
 
-```package main
+```
+package main
 
 import (
     "fmt"
@@ -26,3 +27,4 @@ func main() {
     }
     fmt.Println(userId)
 }
+```
