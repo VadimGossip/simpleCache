@@ -13,7 +13,6 @@ type Cashier interface {
 }
 
 type Cache struct {
-	Cashier
 	mu      *sync.RWMutex
 	storage map[string]CacheItem
 }
