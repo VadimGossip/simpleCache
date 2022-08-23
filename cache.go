@@ -13,24 +13,24 @@ type Cashier interface {
 }
 
 type Cache struct {
-	storage map[string]CacheItem
 	mu      sync.RWMutex
+	storage map[string]cacheItem
 }
 
-type CacheItem struct {
+type cacheItem struct {
 	value interface{}
 	ts    time.Time
 	dur   time.Duration
 }
 
 func NewCache() *Cache {
-	return &Cache{storage: make(map[string]CacheItem)}
+	return &Cache{storage: make(map[string]cacheItem)}
 }
 
 func (c *Cache) Set(key string, value interface{}, dur time.Duration) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	c.storage[key] = CacheItem{
+	c.storage[key] = cacheItem{
 		value: value,
 		ts:    time.Now(),
 		dur:   dur,
@@ -42,11 +42,14 @@ func (c *Cache) Get(key string) (interface{}, error) {
 	defer c.mu.Unlock()
 	if item, ok := c.storage[key]; ok {
 		if time.Since(item.ts) < item.dur {
+			c.storage[key] = cacheItem{
+				value: item.value,
+				ts:    time.Now(),
+				dur:   item.dur,
+			}
 			return item.value, nil
-		} else {
-			delete(c.storage, key)
-			return nil, fmt.Errorf("no data found")
 		}
+		delete(c.storage, key)
 	}
 	return nil, fmt.Errorf("no data found")
 }
